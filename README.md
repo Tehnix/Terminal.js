@@ -2,15 +2,6 @@
 
 A minimal javascript terminal emulator
 
-## JSLint ##
-It should gracefully pass jslint with the applied settings, except for one error:
-<pre>
-    Expected an identifier and instead saw 'undefined' (a reserved word).
-    (function ($, window, undefined) {
-</pre>
-
-Which I'm not going to do anything about since this way is a security measure against redefining `undefined` to true or anything in the likes.
-
 ## Options ##
 <pre>
 user : 'Guest' // Specifies the user to show in the prompt line
@@ -29,10 +20,11 @@ commandHistory: 100 // The limit on the command history (up and down arrows)
 </pre>
 
 ## Types in the file system ##
-__type__: 'file' // A file, which you can `cat` the content of
-__type__: 'link' // A link which when you cd to it, opens a new window
+\__type__: 'file' <code>// A file, which you can `cat` the content of</code>
 
-If there is not defined a __type__, it will except a directory like object
+\__type__: 'link' <code>// A link which when you cd to it, opens a new window</code>
+
+If there is not defined a \__type__, it will expect a directory like object
 
 ## Example of usage ##
 Currently I'm using it on one of my own sites as a fun little gimmick, I'll show you the code below and hopefully you'll grasp the concept:
@@ -116,3 +108,12 @@ Currently I'm using it on one of my own sites as a fun little gimmick, I'll show
         });
     });
 </pre>
+
+## JSLint ##
+It should gracefully pass jslint with the applied settings, except for one error:
+<pre>
+    Expected an identifier and instead saw 'undefined' (a reserved word).
+    (function ($, window, undefined) {
+</pre>
+
+Which I'm not going to do anything about since this way is a security measure against redefining `undefined` to true or anything in the likes.
