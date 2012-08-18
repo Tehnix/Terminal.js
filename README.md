@@ -26,6 +26,15 @@ commandHistory: 100 // The limit on the command history (up and down arrows)
 
 If there is not defined a \__type__, it will expect a directory like object
 
+## JSLint ##
+It should gracefully pass jslint with the applied settings, except for one error:
+<pre>
+    Expected an identifier and instead saw 'undefined' (a reserved word).
+    (function ($, window, undefined) {
+</pre>
+
+Which I'm not going to do anything about since this way is a security measure against redefining `undefined` to true or anything in the likes.
+
 ## Example of usage ##
 Currently I'm using it on one of my own sites as a fun little gimmick, I'll show you the code below and hopefully you'll grasp the concept:
 
@@ -108,12 +117,3 @@ Currently I'm using it on one of my own sites as a fun little gimmick, I'll show
         });
     });
 </pre>
-
-## JSLint ##
-It should gracefully pass jslint with the applied settings, except for one error:
-<pre>
-    Expected an identifier and instead saw 'undefined' (a reserved word).
-    (function ($, window, undefined) {
-</pre>
-
-Which I'm not going to do anything about since this way is a security measure against redefining `undefined` to true or anything in the likes.
