@@ -38,7 +38,7 @@ Which I'm not going to do anything about since this way is a security measure ag
 ## Example of usage ##
 Currently I'm using it on one of my own sites as a fun little gimmick, I'll show you the code below and hopefully you'll grasp the concept:
 
-<pre>
+<code>
     $(document).ready(function() {
         var githubDir = {
             __name__: 'github',
@@ -54,7 +54,6 @@ Currently I'm using it on one of my own sites as a fun little gimmick, I'll show
         // directly to the github API, is because AJAX calls are limited to your own domain. The php files basically just
         // does a call to the API with curl...
         $.get('/github-repos-Tehnix.php').done(function(data) {
-            // Fetch the crap
             data = $.parseJSON(data);
             for (var i=0; i < data.length; i++) {
                 githubDir.Tehnix[data[i].name] = {
@@ -74,7 +73,6 @@ Currently I'm using it on one of my own sites as a fun little gimmick, I'll show
             }
         });
         $.get('/github-repos-ZealDev.php').done(function(data) {
-            // Fetch the crap
             data = $.parseJSON(data);
             for (var i=0; i < data.length; i++) {
                 githubDir.ZealDev[data[i].name] = {
@@ -116,4 +114,4 @@ Currently I'm using it on one of my own sites as a fun little gimmick, I'll show
             }
         });
     });
-</pre>
+</code>
