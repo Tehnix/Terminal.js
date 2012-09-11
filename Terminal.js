@@ -103,7 +103,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
     
     commands = {
-            ls: function (tools, notUsed) {
+            ls: function (tools, firstArg) {
                 var dirList = "";
                 $.each(currentPlace, function (i, dir) {
                     if (dir.__name__) {
@@ -118,8 +118,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 });
                 append(dirList);
             },
-            cd: function (tools, where) {
-                var tmpCurrentPath = currentPath,
+            cd: function (tools, firstArg) {
+                var where = firstArg,
+                    tmpCurrentPath = currentPath,
                     whereSplit = where.split('/'),
                     prepend,
                     i = 0;
@@ -165,15 +166,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 }
                 $(document).trigger('CURRENTPATH_HAS_BEEN_CHANGED');
             },
-            cat: function (tools, file) {
-                 if (currentPlace.hasOwnProperty(file) && currentPlace[file].__type__ === 'file') {
+            cat: function (tools, firstArg) {
+                var file = firstArg;
+                if (currentPlace.hasOwnProperty(file) && currentPlace[file].__type__ === 'file') {
                     file = currentPlace[file];
                     if (file.__text__ !== undefined) {
                         append(file.__text__);
                     }
                  }
             },
-            whoami: function(tools, notUsed) {
+            whoami: function(tools, firstArg) {
                 append(opts.user);
             }
         };

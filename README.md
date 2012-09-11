@@ -17,6 +17,13 @@ filesystem: {
     }
 }, // This is where you build how the filesystem for the terminal should look like, see the example of usage for a concept of what you can do
 commandHistory: 100 // The limit on the command history (up and down arrows),
+commands: false
+</pre>
+
+
+## Extending commands ##
+The commands can be extended or overwritten in the options by specifying an object holding the command name. The following is an example of overwriting the ls command to simply append the string 'test' to the Terminal window.
+<pre>
 commands: {
     // This overwrites the ls function
     // NOTE: you can also create new functions here
@@ -24,12 +31,11 @@ commands: {
         tools['append']('test');
     }
 }
-</pre>
 
-The function argument <code>tools</code> holds the internal functions append, prompt and stringToPath.
+The first argument <code>tools</code> holds the internal functions append, prompt and stringToPath.
 <code>append</code> will append a string to the terminal window. <code>prompt</code> is simply the prompt line, and <code>stringToPath</code> will convert a string into a filepath object.
 
-The function argument <code>firstArg</code> will hold the first argument after the command.
+The second argument <code>firstArg</code> will hold the first argument after the command.
 
 ## Types in the file system ##
 \__type__: 'file' <code>// A file, which you can `cat` the content of</code>
