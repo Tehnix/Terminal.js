@@ -31,7 +31,7 @@ commands: {
         tools['append']('test');
     }
 }
-
+</pre>
 The first argument <code>tools</code> holds the internal functions append, prompt and stringToPath.
 <code>append</code> will append a string to the terminal window. <code>prompt</code> is simply the prompt line, and <code>stringToPath</code> will convert a string into a filepath object.
 
