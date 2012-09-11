@@ -26,10 +26,10 @@ commands: {
 }
 </pre>
 
-tools holds the internal functions append, prompt and stringToPath.
+The function argument <code>tools</code> holds the internal functions append, prompt and stringToPath.
 <code>append</code> will append a string to the terminal window. <code>prompt</code> is simply the prompt line, and <code>stringToPath</code> will convert a string into a filepath object.
 
-<code>firstArg</code> will hold the first argument after the command.
+The function argument <code>firstArg</code> will hold the first argument after the command.
 
 ## Types in the file system ##
 \__type__: 'file' <code>// A file, which you can `cat` the content of</code>
