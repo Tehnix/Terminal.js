@@ -103,7 +103,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }
     
     commands = {
-            ls: function (notUsed) {
+            ls: function (tools, notUsed) {
                 var dirList = "";
                 $.each(currentPlace, function (i, dir) {
                     if (dir.__name__) {
@@ -118,7 +118,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 });
                 append(dirList);
             },
-            cd: function (where) {
+            cd: function (tools, where) {
                 var tmpCurrentPath = currentPath,
                     whereSplit = where.split('/'),
                     prepend,
@@ -165,20 +165,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 }
                 $(document).trigger('CURRENTPATH_HAS_BEEN_CHANGED');
             },
-            cat: function (file) {
+            cat: function (tools, file) {
                  if (currentPlace.hasOwnProperty(file) && currentPlace[file].__type__ === 'file') {
                     file = currentPlace[file];
                     if (file.__text__ !== undefined) {
                         append(file.__text__);
                     }
                  }
+            },
+            whoami: function(tools, notUsed) {
+                append(opts.user);
             }
-
         };
 
     $.fn.terminal = function (options) {
         defaults = {
-            user: 'Guest',
+            user: 'www',
             domain: 'site.com',
             location: '/home/www',
             startText: 'Welcome!',
@@ -190,10 +192,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                     }
                 }
             },
-            commandHistory: 100
+            commandHistory: 100,
+            commands: false // To overwrite exsiting commands
         };
         opts = $.extend(defaults, options);
+        commands = $.extend(commands, opts.commands); // Extend the existing commands
         var $cont = this;
+        var tools = {
+            append: append,
+            prompt: prompt,
+            stringToPath: stringToPath
+        }
 
         return this.each(function () {
             currentPath = opts.location;
@@ -232,7 +241,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                             additional = cmds[1];
                         }
                         append(prompt() + $input.val());
-                        commands[cmds[0]](additional);
+                        commands[cmds[0]](tools, additional);
                         appendToHistory($input.val());
                     } else {
                         append(prompt() + $input.val());

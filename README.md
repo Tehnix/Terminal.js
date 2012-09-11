@@ -16,8 +16,20 @@ filesystem: {
         }
     }
 }, // This is where you build how the filesystem for the terminal should look like, see the example of usage for a concept of what you can do
-commandHistory: 100 // The limit on the command history (up and down arrows)
+commandHistory: 100 // The limit on the command history (up and down arrows),
+commands: {
+    // This overwrites the ls function
+    // NOTE: you can also create new functions here
+    ls: function(tools, firstArg) {
+        tools['append']('test');
+    }
+}
 </pre>
+
+tools holds the internal functions append, prompt and stringToPath.
+<code>append</code> will append a string to the terminal window. <code>prompt</code> is simply the prompt line, and <code>stringToPath</code> will convert a string into a filepath object.
+
+<code>firstArg</code> will hold the first argument after the command.
 
 ## Types in the file system ##
 \__type__: 'file' <code>// A file, which you can `cat` the content of</code>
