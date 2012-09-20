@@ -2,6 +2,8 @@
 
 A minimal javascript terminal emulator
 
+![alt text](http://i.imgur.com/dJ4uO.png "Demo of Terminal.js in action")
+
 ## Options ##
 <pre>
 user : 'Guest' // Specifies the user to show in the prompt line
@@ -54,8 +56,6 @@ It should gracefully pass jslint with the applied settings, except for one error
 Which I'm not going to do anything about since this way is a security measure against redefining `undefined` to true or anything in the likes.
 
 ## Example of usage ##
-![alt text](http://i.imgur.com/dJ4uO.png "Demo of Terminal.js in action")
-
 Currently I'm using it on one of my own sites as a fun little gimmick, I'll show you the code below and hopefully you'll grasp the concept:
 https://gist.github.com/3389412
 
